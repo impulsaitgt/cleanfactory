@@ -49,10 +49,12 @@ class account_move(models.Model):
             fel_Xml = confel.genxml(self,'FACT')
 
             ET.ElementTree(fel_Xml).write("/opt/odoo/fel/pararevisar.xml",encoding="unicode")
-
+            # ET.ElementTree(fel_Xml).write("/home/iitadmin/Documentos/Odoo/odoo-14.0/fel/pararevisar.xml", encoding="unicode")
 
             data = confel.firmafel(self,fel_Xml)
 
+
+            print(data)
             if not data['resultado']:
                 errores = data['descripcion_errores']
                 raise ValidationError(errores[0]['mensaje_error'])
